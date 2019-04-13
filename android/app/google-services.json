@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "91630147072",
+    "firebase_url": "https://pickup-backend.firebaseio.com",
+    "project_id": "pickup-backend",
+    "storage_bucket": "pickup-backend.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91630147072:android:1c52c0df77c71e95",
+        "android_client_info": {
+          "package_name": "com.flutter.firebase.example.pickup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91630147072-7795snqj1fkna3skatthh90722tmt0s7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaflUCpcVJeSV0ydOWCo73ezKCiPkXILs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
