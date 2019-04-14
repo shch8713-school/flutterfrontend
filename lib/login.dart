@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_alert/flutter_alert.dart';
 //import 'package:transparent_image/transparent_image.dart';
 
 class Login extends StatefulWidget {
@@ -10,6 +11,33 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   bool passwordVisible; //declare passwordVisible
 
+  void _showQuestionDialog() {
+    showAlert(
+      context: context,
+      title: 'Allow "Pick-UP" to access your location?',
+      body: "Your location will not be displayed or shared with others.",
+      actions: [
+        AlertAction(
+          text: "Don't Allow",
+          isDestructiveAction: true,
+          onPressed: () {
+            print("Do Nothing");
+//            Navigator.of(context).pushNamed('/');
+          },
+        ),
+        AlertAction(
+          text: "Allow",
+          isDestructiveAction: true,
+          onPressed: () {
+            Navigator.of(context).pushNamed('/map'); //Direct to home page
+            print('home page: map');
+          },
+        ),
+      ],
+    );
+  }
+
+
   // ignore: must_call_super
   void initState() {
     passwordVisible = false;
@@ -19,6 +47,11 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+//      floatingActionButton: FloatingActionButton(
+//        onPressed: () => _showQuestionDialog(),
+//        tooltip: 'Increment',
+//        child: Icon(Icons.add),
+//      ),
       body: Container(
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 30.0),
@@ -116,11 +149,13 @@ class _LoginState extends State<Login> {
                     color: Colors.white,
                     elevation: 4.0, //shadow of button
                     splashColor: Color(0xFF424242),//it revealed white only when it's in a pressed state
-                    onPressed: () {
-                      //if (_usernameController.TextEditingController == 'user' && _passwordController == 'password')
-                      Navigator.of(context).pushNamed('/home'); //Direct to home page
-                      print('home');
-                    },
+                    onPressed: () => _showQuestionDialog(),
+//                    {
+//                      //if (_usernameController.TextEditingController == 'user' && _passwordController == 'password')
+//
+//                      Navigator.of(context).pushNamed('/map'); //Direct to home page
+//                      print('home_map');
+//                    },
                   ),
                 ),
               ],

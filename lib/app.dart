@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:pickup_app/map.dart';
 import 'home.dart';
 import 'login.dart';
 import 'form.dart';
@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
         '/form': (context) => Form_(),
         '/forgot_password': (context) => Forgot(),
         '/Prelogin': (context) => Pre_(),
+        '/map': (context) => MapPage(),
       },
       initialRoute: '/login',
       onGenerateRoute: _getRoute,

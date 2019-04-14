@@ -140,7 +140,8 @@ class Form_ extends StatelessWidget {
                     splashColor: Color(0xFF424242),//it revealed white only when it's in a pressed state
                     onPressed: () {
                       // TODO: Show the next page (101)
-                      Navigator.of(context).pushNamed('/home');
+                      Navigator.of(context).pushNamed('/map');
+                      print("home_map");
                     },
                   ),
                 ),
