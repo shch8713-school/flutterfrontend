@@ -1,6 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_alert/flutter_alert.dart';
+
 // ignore: camel_case_types
-class Form_ extends StatelessWidget {
+class Form_ extends StatefulWidget {
+  @override
+  form_state createState() => form_state();
+
+}
+
+// ignore: camel_case_types
+class form_state extends State<Form_> {
+  void _showQuestionDialog() {
+    showAlert(
+      context: context,
+      title: 'Allow "Pick-UP" to access your location?',
+      body: "Your location will not be displayed or shared with others.",
+      actions: [
+        AlertAction(
+          text: "Don't Allow",
+          isDestructiveAction: true,
+          onPressed: () {
+            print("Do Nothing");
+//            Navigator.of(context).pushNamed('/');
+          },
+        ),
+        AlertAction(
+          text: "Allow",
+          isDestructiveAction: true,
+          onPressed: () {
+            Navigator.of(context).pushNamed('/map'); //Direct to home page
+            print('home page: map');
+          },
+        ),
+      ],
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -22,7 +56,8 @@ class Form_ extends StatelessWidget {
             //confirm password
             new Text(
               "Register your Pick-Up account",
-              style: new TextStyle(fontSize: 23.0,
+              style: new TextStyle(
+                  fontSize: 23.0,
                   color: const Color(0xFFFFAB40),
                   fontWeight: FontWeight.bold,
                   fontFamily: "Roboto"
@@ -36,8 +71,8 @@ class Form_ extends StatelessWidget {
                   child: new TextField(
                     decoration: InputDecoration(
                       icon: const Icon(Icons.person),
-                      hintText: 'Enter',
-                      labelText: "Last Name",
+//                      hintText: 'Enter your first name',
+                      labelText: "First Name",
                       contentPadding: EdgeInsets.all(10),
                     ),
                     textCapitalization: TextCapitalization.words,
@@ -52,9 +87,9 @@ class Form_ extends StatelessWidget {
                 new Flexible(
                   child: new TextField(
                     decoration: InputDecoration(
-                      //icon: const Icon(Icons.person),
-                      hintText: 'Enter',
-                      labelText: "First Name",
+                      icon: const Icon(Icons.person),
+//                      hintText: 'Enter your last name',
+                      labelText: "Last Name",
                       contentPadding: EdgeInsets.all(10),
                       //hasFloatingPlaceholder: false,
                     ),
@@ -72,7 +107,7 @@ class Form_ extends StatelessWidget {
                 keyboardType: TextInputType.emailAddress,
                 decoration: InputDecoration(
                   icon: const Icon(Icons.email),
-                  hintText: 'Enter',
+//                  hintText: 'Enter',
                   labelText: "Your email address",
                 ),
 //                keyboardType: TextInputType.multiline,
@@ -86,7 +121,7 @@ class Form_ extends StatelessWidget {
             new TextField(
                 decoration: InputDecoration(
                   icon: const Icon(Icons.perm_identity),
-                  hintText: 'Enter',
+//                  hintText: 'Enter',
                   labelText: "Pick an username for this account",
                 ),
                 textAlign: TextAlign.center,
@@ -97,7 +132,7 @@ class Form_ extends StatelessWidget {
             ),
             new TextField(
                 decoration: InputDecoration(
-                  icon: const Icon(Icons.lock),
+//                  icon: const Icon(Icons.lock),
                   hintText: 'Enter',
                   labelText: "Choose a password",
                 ),
@@ -112,7 +147,7 @@ class Form_ extends StatelessWidget {
                 decoration: InputDecoration(
                   //icon: const Icon(Icons.lock_open),
                   icon: const Icon(Icons.lock),
-                  hintText: 'Enter',
+//                  hintText: 'Enter',
                   labelText: "Enter your new password again",
                 ),
                 obscureText: true,
@@ -138,11 +173,12 @@ class Form_ extends StatelessWidget {
                     color: Colors.white,
                     elevation: 4.0, //shadow of button
                     splashColor: Color(0xFF424242),//it revealed white only when it's in a pressed state
-                    onPressed: () {
-                      // TODO: Show the next page (101)
-                      Navigator.of(context).pushNamed('/map');
-                      print("home_map");
-                    },
+                    onPressed: () => _showQuestionDialog(),
+//                    {
+//                      // TODO: Show the next page (101)
+//                      Navigator.of(context).pushNamed('/map');
+//                      print("home_map");
+//                    },
                   ),
                 ),
               ],

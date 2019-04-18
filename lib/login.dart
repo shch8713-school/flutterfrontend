@@ -63,7 +63,7 @@ class _LoginState extends State<Login> {
                 SizedBox(height: 30.0),
               ],
             ),
-            SizedBox(height: 25.0),
+            SizedBox(height: 15.0),
             // Add TextField widgets
             // [Name]
             TextField(
@@ -73,9 +73,15 @@ class _LoginState extends State<Login> {
                 labelText: 'Username',
 //                fillColor: Color(0xFFFFFFFF),
               ),
+              textCapitalization: TextCapitalization.words,
+              textAlign: TextAlign.center,
+              style: new TextStyle(fontSize:16.0,
+                  color: const Color(0xFF000000),
+                  fontWeight: FontWeight.w200,
+                  fontFamily: "Roboto"),
             ),
             // spacer
-            SizedBox(height: 0),
+//            SizedBox(height: 0),
             // [Password]
 
             new TextField(
@@ -110,11 +116,19 @@ class _LoginState extends State<Login> {
                   },
                 ),
               ),
+              textCapitalization: TextCapitalization.words,
+              textAlign: TextAlign.center,
+              style: new TextStyle(fontSize:16.0,
+                  color: const Color(0xFF000000),
+                  fontWeight: FontWeight.w200,
+                  fontFamily: "Roboto"),
             ),
             ButtonBar(
               children: <Widget>[
                 FlatButton(
-                  child: Align(alignment: Alignment.centerLeft, child: Text("Forgot Password?",
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text("Forgot Password?",
                     style: TextStyle(
                       fontSize: 12.00, //The max size can fit in the button bar
                       decoration: TextDecoration.underline,

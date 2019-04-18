@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pickup_app/map.dart';
-import 'home.dart';
+import 'activity_search.dart';
 import 'login.dart';
 import 'form.dart';
 import 'forgot_password.dart';
 import 'Prelogin.dart';
+import 'package:pickup_app/event_create.dart';
 
 // TODO: Convert ShrineApp to stateful widget (104)
 class MyApp extends StatelessWidget {
@@ -23,11 +24,12 @@ class MyApp extends StatelessWidget {
       // TODO: Change backLayer field value to CategoryMenuPage (104)
       routes: {
         '/': (context) => Login(),
-        '/home': (context) => HomePage(),
+        '/activity_search': (context) => activity(),
         '/form': (context) => Form_(),
         '/forgot_password': (context) => Forgot(),
         '/Prelogin': (context) => Pre_(),
         '/map': (context) => MapPage(),
+        '/event_create': (context) => event(),
       },
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
