@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+//import 'dart:async';
 
 class MapPage extends StatefulWidget{
   @override
@@ -23,18 +24,79 @@ class MapPageState extends State<MapPage>{
           color: Colors.orangeAccent,
           child: new ListView(
             children: <Widget>[
-              new DrawerHeader(
-                child: new Text('Hello!',
-                  style: new TextStyle(
-                    fontSize: 16.0,
-                    color: const Color(0xFFFFAB40),
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Roboto"
-                  ),
+              new Container(
+                child: new DrawerHeader(
+//                    child: new CircleAvatar(
+//                      maxRadius: 10.0,
+//                      backgroundColor: Colors.orangeAccent,
+//                      padding: EdgeInsets.all(15.0),
+                      child: Column(
+                        children: <Widget>[
+                          Align(
+                            alignment: Alignment.topLeft,
+                            child: Text('Hello User!',
+                              style: new TextStyle(
+                                  fontSize: 16.0,
+                                  color: const Color(0xFFFFAB40),
+//                                fontWeight: FontWeight.bold,
+                                  fontFamily: "Roboto"
+                              ),
+                            ),
+                          ),
+//                          new Text(
+//                            "Hello User!",
+//                            style: new TextStyle(
+//                                fontSize: 16.0,
+//                                color: const Color(0xFFFFAB40),
+////                                fontWeight: FontWeight.bold,
+//                                fontFamily: "Roboto"
+//                            ),
+//                            textAlign: TextAlign.left,
+//                          ),
+                          Center(
+                            child: new Container(
+                              width: 70.0,
+                              height: 70.0,
+                              decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: ExactAssetImage('assets/default_profile.jpg'),
+                                ),
+                              ),
+                            ),
+                          ),
+                          FlatButton(
+                            child: Align(
+                              alignment: Alignment.center,
+                              child: Text("View Profile",
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.blueAccent,
+                                ),
+                              ),
+                            ),
+                            onPressed: (){
+                              Navigator.pushNamed(context, '/user_info_alt');
+                            },
+                          ),
+                        ],
+                      ),
                 ),
-                decoration: new BoxDecoration(
-                  color: Colors.white,
-                ),
+                color: Colors.white,
+                
+
+//                new Text('Hello!',
+//                  style: new TextStyle(
+//                    fontSize: 16.0,
+//                    color: const Color(0xFFFFAB40),
+//                    fontWeight: FontWeight.bold,
+//                    fontFamily: "Roboto"
+//                  ),
+//                ),
+//                decoration: new BoxDecoration(
+//                  color: Colors.white,
+//                ),
               ),
               Container(
                 // This align moves the children to the bottom
@@ -107,14 +169,20 @@ class MapPageState extends State<MapPage>{
         body: Stack(
           children: <Widget>[
           GoogleMap(
-                onMapCreated: _onMapCreated,
-                initialCameraPosition: CameraPosition(
-                  bearing: 90.0,
-                  target: LatLng(40.007565, -105.267298),
-                  tilt: 20, //talk to group and adjust
-                  zoom: 15.5
-                ),
-              ),
+            myLocationEnabled: true,
+            mapType: MapType.normal,
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+                bearing: 90.0,
+                target: LatLng(40.007565, -105.267298),
+                tilt: 20, //talk to group and adjust
+                zoom: 15.5
+            ),
+            markers: {
+              _pin,
+            },
+          ),
+
 //          SizedBox(height: 30.0,),
           Padding(
             padding: const EdgeInsets.all(25.0),
@@ -152,10 +220,56 @@ class MapPageState extends State<MapPage>{
               ),
             ),
           )
+//            _zoomin(),
+//            _zoomout(),
+//            _buildContainer(),
             ],
           ),
         ),
 
       );
   }
+//  Widget _buildContainer(){
+//    return Align(
+//      alignment: Alignment.bottomLeft,
+//      child: Container(
+//        margin: EdgeInsets.symmetric(vertical: 20.0,),
+//        height: 150.0,
+//        child: ListView(
+//          scrollDirection: Axis.horizontal,
+//          children: <Widget>[
+//            SizedBox(width: 10.0,),
+//            Padding(
+//              padding: const EdgeInsets.all(8.0),
+//              child: _boxes("Live Event!"),
+//            )
+//          ],
+//  }
+
+//        ),
+//      ),
+//    );
+//  Widget _boxes(double lat, double long){
+//    return GestureDetector(
+//      onTap: (){
+//        _gotoLocation(lat, long);
+//      },
+//    );
+//  }
+//  Future<void> _gotoLocation(double lat, double long)async{
+//    final GoogleMapController controller = await mapController.future;
+//    controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition()))
+
+  //}
+  Marker _pin = Marker(
+    markerId: MarkerId('_pin1'),
+    position: LatLng(40.006949, -105.262697),
+    //onTap ,
+
+    //TODO: Replace the latitude and longtitude to the actual one for each created event
+//    icon: BitmapDescriptor.defaultMarkerWithHue(
+//      BitmapDescriptor.hueViolet,
+//
+//    )
+  );
 }

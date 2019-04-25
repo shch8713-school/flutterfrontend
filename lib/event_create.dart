@@ -10,6 +10,7 @@ class event extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: ListView(
+          //TODO: padding: ,
          children: <Widget>[
             Padding(
               padding: EdgeInsets.all(25.0),
@@ -57,11 +58,39 @@ class event extends StatelessWidget {
                 decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.orangeAccent,
-                    hintText: 'Search an activity to join/schedule'
+                    hintText: 'Search to join a live/scheduled event'
                 ),
               ),
             ),
-            SizedBox(height: 400.0,),
+            SizedBox(height: 20.0,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              child: new Text(
+                "Scudeuled/Live Events:",
+                style: new TextStyle(
+                    fontSize: 23.0,
+                    color: const Color(0xFFFFFFFF),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Roboto"
+                ),
+                textAlign: TextAlign.left,
+              ),
+            ),
+            SizedBox(height: 100.0,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 50.0),
+              child: new Text(
+                "No Events available",
+                style: new TextStyle(
+                    fontSize: 23.0,
+                    color: const Color(0xFFFFFFFF),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: "Roboto"
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 230.0,),
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Align(

@@ -6,6 +6,9 @@ import 'form.dart';
 import 'forgot_password.dart';
 import 'Prelogin.dart';
 import 'package:pickup_app/event_create.dart';
+import 'package:pickup_app/profile.dart';
+import 'package:pickup_app/user_info.dart';
+import 'package:pickup_app/user_info_alt.dart';
 
 // TODO: Convert ShrineApp to stateful widget (104)
 class MyApp extends StatelessWidget {
@@ -30,6 +33,9 @@ class MyApp extends StatelessWidget {
         '/Prelogin': (context) => Pre_(),
         '/map': (context) => MapPage(),
         '/event_create': (context) => event(),
+        '/profile': (context) => profile_upload(),
+        '/user_info': (context) => ProfileInfo(),
+        '/user_info_alt': (context) => Profile(),
       },
       initialRoute: '/login',
       onGenerateRoute: _getRoute,

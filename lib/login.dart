@@ -44,6 +44,10 @@ class _LoginState extends State<Login> {
   }
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  // ignore: non_constant_identifier_names
+  bool _user_validate = false;
+  // ignore: non_constant_identifier_names
+  bool _pass_validate = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +74,8 @@ class _LoginState extends State<Login> {
               controller: _usernameController,
               decoration: InputDecoration(
                 //filled: true,
-                labelText: 'Username',
+                errorText: _user_validate ? 'Email Can\'t Be Empty' : null,
+                labelText: 'Email',
 //                fillColor: Color(0xFFFFFFFF),
               ),
               textCapitalization: TextCapitalization.words,
@@ -96,6 +101,7 @@ class _LoginState extends State<Login> {
               obscureText: passwordVisible,
               decoration: InputDecoration(
                 //filled: true,
+                errorText: _pass_validate ? 'Password Can\'t Be Empty' : null,
                 labelText: 'Password',
 //                fillColor: Color(0xFFFFFFFF),
                 suffixIcon: IconButton(
@@ -163,7 +169,22 @@ class _LoginState extends State<Login> {
                     color: Colors.white,
                     elevation: 4.0, //shadow of button
                     splashColor: Color(0xFF424242),//it revealed white only when it's in a pressed state
-                    onPressed: () => _showQuestionDialog(),
+                    onPressed: () {
+                      setState(() {
+                        _usernameController.text.isEmpty ? _user_validate = true : _user_validate = false;
+                        _passwordController.text.isEmpty ? _pass_validate = true : _pass_validate = false;
+                      });
+                      if (_user_validate == true){
+                        return _usernameController.text.isEmpty;
+                      } else {
+                        _showQuestionDialog();
+                      }
+                      if (_pass_validate == true){
+                        return _passwordController.text.isEmpty;
+                      } else {
+                        _showQuestionDialog();
+                      }
+                      },
 //                    {
 //                      //if (_usernameController.TextEditingController == 'user' && _passwordController == 'password')
 //
@@ -176,7 +197,7 @@ class _LoginState extends State<Login> {
             ),
             new InkWell(
               splashColor: Color(0xFF424242),//it revealed white only when it's in a pressed state
-              onTap: () => Navigator.of(context).pushNamed('/home'), //Actions when tapping the button
+              onTap: () => Navigator.of(context).pushNamed('/map'), //Actions when tapping the button
               child: new Container(
                 //width: 100.0,
                 height: 35.0, //Button size

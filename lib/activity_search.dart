@@ -4,6 +4,10 @@ import 'package:flutter/material.dart';
 //import 'package:flutter_cupertino_date_picker/flutter_cupertino_date_picker.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 //import 'package:intl/intl.dart';
+//import 'package:location/location.dart' as LocationManager;
+//import 'package:google_maps_webservice/places.dart';
+//import 'package:flutter_google_places/flutter_google_places.dart';
+
 
 
 
@@ -12,12 +16,22 @@ class activity extends StatefulWidget{
   @override
   _activityState createState() => _activityState();
 }
+//onConfirm: (date) {
+//                        print('confirm $date');
+//                      },
 
 // ignore: camel_case_types
 class _activityState extends State<activity> {
   final _eventController = TextEditingController();
   final _locationController = TextEditingController();
   bool _validate = false;
+//  var _date = DatePicker.showTimePicker();
+//  bool invalid_time = false;
+  final _date = DateTime.now();
+//  InkWell(onTap: (){DateTime.now();},);
+  //DateTime();
+//  InkWell(onTap: (){},);
+//      DatePicker.showTimePicker;
 
   @override
   void dispose() {
@@ -98,7 +112,7 @@ class _activityState extends State<activity> {
 //                  labelText: 'Create your own event',
                   hintText: 'Enter your event name',
                   contentPadding: EdgeInsets.all(10),
-                  errorText: _validate ? 'Event Name Can\'t Be Empty' : null
+                  errorText: _validate ? 'Event Name Can\'t Be Empty' : null,
                 ),
                 textCapitalization: TextCapitalization.words,
                 textAlign: TextAlign.center,
@@ -163,39 +177,83 @@ class _activityState extends State<activity> {
             SizedBox(height: 20.0,),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.0),
-              child: InkWell(
-                splashColor: Color(0xFF424242),//it revealed white only when it's in a pressed state
-                onTap: (){
-                  DatePicker.showDateTimePicker(
-                      context,
-                      showTitleActions: true,
-                      onChanged: (date) {
-                        print('change $date');
-                      }, onConfirm: (date) {
-                    print('confirm $date');
-                  },
-                      currentTime: DateTime.now()
-                  );
-                },
-                child: new Container(
-                  //width: 100.0,
-                  height: 35.0, //Button size
-                  decoration: new BoxDecoration(
-                    color: Colors.white,
-                    border: new Border.all(color: Colors.white),
-                    borderRadius: new BorderRadius.circular(35.0),
-                  ),
-                  child: new Center(
-                    child: new Text(
-                      'Click to choose time',
-                      style: new TextStyle(
-                          fontSize: 16.0,
-                          color: Colors.orangeAccent
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  InkWell(
+                    splashColor: Color(0xFF424242),//it revealed white only when it's in a pressed state
+                    onTap: (){
+                      DatePicker.showDateTimePicker(
+                          context,
+                          showTitleActions: true,
+                          onChanged: (date) {
+                            print('change $date');
+                          }, 
+                          onConfirm: (date) {
+                          print('confirm $date');
+                          },
+                          currentTime: DateTime.now()
+                      );
+                    },
+                    child: new Container(
+                      //width: 100.0,
+                      height: 35.0, //Button size
+                      decoration: new BoxDecoration(
+                        color: Colors.white,
+                        border: new Border.all(color: Colors.white),
+                        borderRadius: new BorderRadius.circular(35.0),
+                      ),
+                      child: new Center(
+                        child: new Text(
+//                      errorText: _validate ? 'Event Name Can\'t Be Empty' : null
+                          'Click to choose time',
+                          style: new TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.orangeAccent,
+                          ),
+                        ),
+
                       ),
                     ),
                   ),
-                ),
+                  SizedBox(height: 5,),
+                  Text("Your event will start on: $_date"),
+                ],
               ),
+//              InkWell(
+//                splashColor: Color(0xFF424242),//it revealed white only when it's in a pressed state
+//                onTap: (){
+//                  DatePicker.showDateTimePicker(
+//                      context,
+//                      showTitleActions: true,
+//                      onChanged: (date) {
+//                        print('change $date');
+//                      }, onConfirm: (date) {
+//                    print('confirm $date');
+//                  },
+//                      currentTime: DateTime.now()
+//                  );
+//                },
+//                child: new Container(
+//                  //width: 100.0,
+//                  height: 35.0, //Button size
+//                  decoration: new BoxDecoration(
+//                    color: Colors.white,
+//                    border: new Border.all(color: Colors.white),
+//                    borderRadius: new BorderRadius.circular(35.0),
+//                  ),
+//                  child: new Center(
+//                    child: new Text(
+////                      errorText: _validate ? 'Event Name Can\'t Be Empty' : null
+//                      'Click to choose time',
+//                      style: new TextStyle(
+//                          fontSize: 16.0,
+//                          color: Colors.orangeAccent,
+//                      ),
+//                    ),
+//                  ),
+//                ),
+//              ),
             ),
             //TODO Public/Private Event Using Radio
             Padding(
@@ -212,11 +270,11 @@ class _activityState extends State<activity> {
                       setState(() {
                         _eventController.text.isEmpty ? _validate = true : _validate = false;
                       });
-//                      if (_validate = true){
-//                        Navigator.of(context).pushNamed('/map');
-//                      } else {
-//                        print("Error Text");
-//                      }
+                      if (_validate == true){
+                        return _eventController.text.isEmpty;
+                      } else {
+                        Navigator.of(context).pushNamed('/map');
+                      }
                     }
                 )
               ),
